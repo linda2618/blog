@@ -27,6 +27,8 @@ app.use(update.any())  //允许所有文件上传
 //注册router
 app.use('/test', require('./routers/TestRouter.js'))
 app.use('/admin', require('./routers/AdminRouter.js'))
+app.use('/category', require('./routers/CategoryRouter.js'))
+app.use('/blog', require('./routers/BlogRouter.js'))
 
 
 app.get('/',(req, res) => {
