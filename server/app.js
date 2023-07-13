@@ -38,6 +38,7 @@ app.all('*', async(req, res, next) => {
     if(req.path.indexOf(ADMIN_TOKEN_PATH) > -1){
           //token验证
         let {token} = req.headers
+        
         // console.log(req.headers)
         // {
         //     token: '4798b525-7309-4205-8769-40fd3d04c839',    
