@@ -22,7 +22,7 @@ router.get('/getList', async(req, res) => {
 })
 
 //添加接口
-router.post('/add', async(req, res) => {
+router.post('/_token/add', async(req, res) => {
     let {name} = req.body
 
     let {err, rows} =  await db.async.run("INSERT INTO category(id, name) VALUES (?, ?)", [genId.NextId(), name])
@@ -40,8 +40,10 @@ router.post('/add', async(req, res) => {
 })
 
 //修改接口
-router.put('/update', async(req, res) => {
+router.put('/_token/update', async(req, res) => {
     let {id, name} = req.body
+    // console.log(req.path) // /update
+
     let update_sql = "UPDATE category SET name = ? where id = ?"
 
     let {err, rows} =  await db.async.run(update_sql, [name, id])
@@ -59,7 +61,7 @@ router.put('/update', async(req, res) => {
 })
 
 //删除接口 /category/delete?id=xxx
-router.delete('/delete', async(req, res) => {
+router.delete('/_token/delete', async(req, res) => {
     let id = req.query.id
     let delete_sql = "DELETE FROM category where id = ?"
 

@@ -72,7 +72,7 @@ router.get('/search', async(req, res) => {
 })
 
 //添加博客
-router.post('/add', async(req, res) => {
+router.post('/_token/add', async(req, res) => {
     let {category_id, title, content} = req.body
 
     let create_time =  new Date().getTime()
@@ -94,7 +94,7 @@ router.post('/add', async(req, res) => {
     }
 })
 //修改博客
-router.put('/update', async(req, res) => {
+router.put('/_token/update', async(req, res) => {
     let{id, category_id, title, content} = req.body
 
     let create_time =  new Date().getTime()
@@ -116,7 +116,7 @@ router.put('/update', async(req, res) => {
     }
 })
 //删除博客
-router.delete('/delete', async(req, res) => {
+router.delete('/_token/delete', async(req, res) => {
     letid = req.query.id
     let delete_sql = "DELETE FROM blog WHERE id = ?"
 
