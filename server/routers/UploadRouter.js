@@ -33,7 +33,7 @@ router.post('/rich_editor_upload', async(req, res) => {
         let file_ext = file.originalname.substring(file.originalname.lastIndexOf(".") + 1)
         //随机文件名字
         let file_name = genId.NextId() + '.' + file_ext
-        console.log(file_name, file.filename)
+        // console.log(file_name, file.filename)
 
 /* process.cwd() 是当前Node.js进程执行时的文件夹地址——工作目录，保证了文件在不同的目录下执行时，路径始终不变(简单说就是执行命令=== node 文件地址（命令行)
  __dirname 是被执行的js 文件的地址 ——文件所在目录
