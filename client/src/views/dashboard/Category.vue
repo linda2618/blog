@@ -131,11 +131,19 @@ const updateMessage = async(value) => {
         return
     }
     
-    let result = await axios.put('/category/_token/add', updateCategory)
-    console.log(result)
-    
-
+    let res = await axios.put('/category/_token/update', {
+        name: updateCategory.name.trim(),
+        id: updateCategory.id
+    })
+    if(res.data.code){
+        message.info(res.data.msg)
+        loadDatas()
+    }else{
+        message.error(res.data.msg)
+    }
+    showUpdateModal.value = false
 }
+
 const cancelAdd = () => {
     message.success("取消")
     showAddModal.value = false

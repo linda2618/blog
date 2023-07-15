@@ -21,6 +21,7 @@ app.provide("axios", axios)//方法注入(使用的名字， 真正注入的程�
 app.provide("message", message)
 app.provide("dialog", dialog)
 app.provide("notification", notification)
+app.provide("server_url", axios.defaults.baseURL )
 
 app.use(router)
 app.use(naive)

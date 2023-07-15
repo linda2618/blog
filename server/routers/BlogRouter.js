@@ -2,6 +2,26 @@ const express = require('express')
 const router = express.Router()
 const {db, genId} = require('../db/DbUtils')
 
+//查询单篇 博客文章
+router.get('/detail', async(req, res) => {
+    let {id} = req.query
+    let detail_sql = "SELECT * FROM blog WHERE id = ?"
+    let {err, rows} = await db.async.all(detail_sql, [id])
+    if(err == null){
+        res.send({
+            code:200, 
+            msg:'获取成功',
+            rows
+        })
+        }else{
+            res.send({
+                code: 500,
+                msg:'获取失败'
+            })
+        }
+})
+
+
 //查询博客
 router.get('/search', async(req, res) => {
     /*
@@ -36,7 +56,7 @@ router.get('/search', async(req, res) => {
     }
 
     //查询分页内容
-    let searchSql = "SELECT * FROM blog " + whereSqlStr + "ORDER BY create_time DESC LIMIT ?,? "
+    let searchSql = "SELECT id, category_id, title, substr(content, 0, 88) AS content, create_time FROM blog " + whereSqlStr + "ORDER BY create_time DESC LIMIT ?,? "
     let searchSqlParams = params.concat([(page - 1) * pageSize, pageSize])
 
     //查询数据总数
@@ -46,7 +66,7 @@ router.get('/search', async(req, res) => {
     let searchResult = await db.async.all(searchSql, searchSqlParams)
     let countResult = await db.async.all(searchCountSql, searchCountParams)
 
-    console.log("查询blog数据...")
+    // console.log("查询blog数据...")
     if(searchResult.err == null && countResult.err == null){
         res.send({
             code:200,
@@ -80,7 +100,7 @@ router.post('/_token/add', async(req, res) => {
     let insert_sql = "INSERT INTO blog(id, category_id, title, content, create_time) VALUES (?, ?, ?, ?, ?)"
 
    let {err, rows} = await db.async.run(insert_sql, [genId.NextId(), category_id, title, content, create_time])
-   console.log("添加blog数据...")
+//    console.log("添加blog数据...")
    if(err == null){
     res.send({
         code:200, 
@@ -102,7 +122,7 @@ router.put('/_token/update', async(req, res) => {
     let params = [category_id, title, content, create_time, id]
 
    let {err, rows} = await db.async.run(update_sql, params)
-   console.log("修改blog数据...")
+//    console.log("修改blog数据...")
    if(err == null){
     res.send({
         code:200, 
@@ -117,11 +137,11 @@ router.put('/_token/update', async(req, res) => {
 })
 //删除博客
 router.delete('/_token/delete', async(req, res) => {
-    letid = req.query.id
+    let id = req.query.id
     let delete_sql = "DELETE FROM blog WHERE id = ?"
 
    let {err, rows} = await db.async.run(delete_sql, [id])
-   console.log("删除blog数据...")
+//    console.log("删除blog数据...")
    if(err == null){
     res.send({
         code:200, 

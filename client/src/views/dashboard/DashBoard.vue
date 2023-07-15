@@ -24,7 +24,7 @@ let menus = [
 const toPage = (item) =>{
     if(item.name == "logout"){
         // router.push("/login")
-        console,log('123444')
+        console,log('退出成功')
     }else{
         router.push(item.href)
     }
@@ -57,7 +57,7 @@ const toPage = (item) =>{
     border-bottom: 1px solid #dadada;
  
     &:hover {
-      color: #fd760e;
+      color: #4ec981;
     }
   }
 }
