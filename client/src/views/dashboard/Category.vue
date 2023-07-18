@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="category-container">
         <n-button @click="showAddModal = true" type="info">添加</n-button>
         <n-table :single-line="false" bordered striped>
             <thead>
@@ -181,6 +181,9 @@ const deleteCategory = async(item) => {
 </script>
 
 <style lang="scss" scoped>
+.category-container{
+    opacity: .9;
+}
 .n-button {
     margin: 10px 40px;
 }

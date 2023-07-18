@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="article-container">
         <n-card>
             <n-tabs v-model:value="tabValue" type="line" animated>
 
@@ -98,6 +98,13 @@ onMounted(() => {
     loadBlogs()
     loadDatas()
 })
+//定义分页
+const pageInfo = reactive({
+    page:1,
+    pageSize:5,
+    pageCount:0, //页数
+    count: 0  //总数
+})
 
 //查询所有博客文章内容
 const loadBlogs = async() => {
@@ -114,13 +121,6 @@ const loadBlogs = async() => {
     pageInfo.count = res.data.data.count
     pageInfo.pageCount = Math.ceil(pageInfo.count / pageInfo.pageSize)
 }
-//定义分页
-const pageInfo = reactive({
-    page:1,
-    pageSize:5,
-    pageCount:0, //页数
-    count: 0  //总数
-})
 
 
 
@@ -204,8 +204,11 @@ const toDelete = async(blog) => {
 </script>
 
 <style lang="scss" scoped>
+.article-container{
+    opacity: 0.9;
+}
 .blogList{
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
 }
 .time{
     margin-right: 70px;

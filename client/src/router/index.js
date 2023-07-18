@@ -1,8 +1,10 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 
 let routes = [
+    {path:'/', component:() => import('../views/HomePage.vue')},
     {path:'/test', component:() => import('../views/Test.vue')},
     {path:'/login', component:() => import('../views/Login.vue')},
+    {path:'/detail', component:() => import('../views/Detail.vue')},
     {
         path:'/dashboard',  
         redirect: '/dashboard/article',
