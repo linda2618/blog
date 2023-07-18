@@ -23,7 +23,6 @@ db.async.run = (sql, params) => {
             resolve({err, rows})
         })
     })
-
 }
 
 module.exports = {db, genId}
