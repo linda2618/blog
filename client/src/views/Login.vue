@@ -81,10 +81,12 @@ const goBack = () => {
 
 <style lang="scss" scoped>
 #login_container{
+    height: 100%;
     overflow: hidden;
-    // width: 100%;
-    // height: 100%;
-    // // background: url(../../public/gm.jpg);
+    background: url(../../public/R.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .login_panel {
     width: 500px;
